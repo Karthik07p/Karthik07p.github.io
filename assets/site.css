@@ -250,7 +250,7 @@ a.card:hover h3 { color: var(--accent); }
 a.card:hover .vis img { transform: scale(1.03); }
 .vis.slide { padding: 6px; }   /* slides were captured on white: a white mat around them */
 .vis.slide img { width: 100%; height: 100%; object-fit: cover; object-position: left top; border-radius: 6px; }
-.vis.slide.top img { object-position: center top; }
+.vis.slide.pin-top img { object-position: center top; }
 .vis.print { background: color-mix(in srgb, var(--rule) 45%, var(--sheet)); }   /* a printed slide taped into the notebook */
 .vis.print img {
   position: absolute; left: 50%; top: 22px; width: 78%; margin-left: -39%; transform: rotate(-2.5deg);
@@ -274,7 +274,7 @@ a.card:hover .vis.phone img { transform: rotate(-4deg) translateY(-6px); }
 .vis.chart { background: transparent; border-style: dashed; padding: 16px 18px 12px; display: grid; grid-template-rows: minmax(0, 1fr) auto; gap: 8px; }
 .vis.chart svg { width: 100%; height: 100%; }
 .vis.chart rect { fill: color-mix(in srgb, var(--ink-2) 35%, transparent); }
-.vis.chart rect.top { fill: var(--accent); }
+.vis.chart rect.lead { fill: var(--accent); }
 .vis.chart .tag { font: 500 12px/1.3 var(--mono); color: var(--ink-2); }
 .vis.chart .tag b { color: var(--accent); font-weight: 600; }
 .card > .vis ~ .idx { /* index tag clipped onto the visual's corner */
