@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SwasthyaSaathi · Karthik Pandurangan</title>
+<meta name="description" content="Case study: SwasthyaSaathi, a vernacular GenAI triage assistant for India, from problem and personas to a live web app.">
+<script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+
+<header class="top">
+  <a class="me" href="../../"><i aria-hidden="true">kp</i>Karthik Pandurangan</a>
+  <nav aria-label="Main">
+    <a href="../../#work">Work</a>
+    <a href="../../assets/Karthik_Pandurangan_Resume.pdf">Resume</a>
+    <a href="http://www.linkedin.com/in/karthik-pandurangan-2b660627a">LinkedIn</a>
+    <a href="https://github.com/Karthik07p">GitHub</a>
+    <button class="theme-btn" type="button">Theme</button>
+  </nav>
+</header>
+
+<main class="wrap">
+
+  <section class="case-head">
+    <p class="label">Case study · GenAI · Healthcare</p>
+    <h1>SwasthyaSaathi: the AI front door to Indian healthcare</h1>
+    <p class="lede">A vernacular triage assistant that listens to symptoms in Hindi, Marathi or English, catches emergencies before any AI call, and routes each patient to the right specialist at the right urgency, before a single rupee is misspent.</p>
+    <div class="ctas">
+      <a class="btn solid" href="https://swasthyasaathi-chcc.onrender.com">Launch the web app</a>
+      <a class="btn line" href="https://github.com/Karthik07p/swasthyasaathi">Source code on GitHub</a>
+      <a class="btn line" href="SwasthyaSaathi_GenAI.pdf">Pitch deck (PDF)</a>
+    </div>
+    <dl class="facts-strip">
+      <div><dt>Type</dt><dd>Product case study + working build</dd></div>
+      <div><dt>Languages</dt><dd>English, Hindi, Marathi</dd></div>
+      <div><dt>Stack</dt><dd>React, Express, MongoDB, Gemini</dd></div>
+      <div><dt>Status</dt><dd>Live web app, Android build</dd></div>
+    </dl>
+    <p class="label">The first chat can take up to a minute while the free-tier server wakes up.</p>
+  </section>
+
+  <section class="stats" aria-label="The problem in numbers">
+    <div class="stat bad"><b>80%</b><span>specialist shortfall at rural community health centres</span></div>
+    <div class="stat"><b>62%</b><span>of India's health spending is out-of-pocket</span></div>
+    <div class="stat"><b>85%</b><span>when that spending is funded by borrowing</span></div>
+    <div class="stat long"><b>₹500–1,500</b><span>saved per episode by avoiding a wrong consultation</span></div>
+  </section>
+
+  <section class="part">
+    <div class="read">
+      <h2>The problem: India's broken first mile of care</h2>
+      <p>When symptoms appear, patients in Tier 2/3 towns and rural areas have no trusted first opinion in their own language. They self-medicate at the local chemist or guess a specialist, which leads to repeat consultations, duplicate tests and dangerous delays. A ₹200 outpatient issue can turn into a ₹31,500 hospital stay.</p>
+      <p>Capturing the top of the healthcare funnel helps everyone: patients avoid wasted consultations, verified doctors and labs get high-intent referrals, and overloaded doctors stop doing triage by hand.</p>
+    </div>
+  </section>
+
+  <section class="part">
+    <div class="read"><h2>Who it's for</h2></div>
+    <div class="duo">
+      <div><h3>Meena, 34 · homemaker and caregiver, Nashik</h3><p>WhatsApp-native, low English literacy. Needs to know quickly whether a family member's symptom is an emergency. Today she has no trusted opinion at home and defaults to the chemist.</p></div>
+      <div><h3>Ramesh, 58 · farmer, rural Madhya Pradesh</h3><p>Diabetic and hypertensive, low digital literacy. Needs voice-first help in his own language to reach the right specialist without being bounced between clinics.</p></div>
+    </div>
+  </section>
+
+  <section class="part">
+    <div class="read">
+      <h2>The solution: a four-step triage loop</h2>
+      <p>A conversational, vernacular interface, WhatsApp-native in the full vision, that takes a patient from symptom to the right care.</p>
+    </div>
+    <ol class="flow">
+      <li><b>1 · Describe</b><span>The patient types or speaks symptoms in their own language, including Hinglish.</span></li>
+      <li><b>2 · Triage</b><span>GenAI asks one clarifying question at a time and grades urgency: self-care, see a doctor, or emergency.</span></li>
+      <li><b>3 · Route</b><span>Matches a nearby verified specialist, with the reasoning in plain language.</span></li>
+      <li class="key"><b>4 · Act</b><span>Books the consult or test, or hands red-flag cases to a human doctor.</span></li>
+    </ol>
+    <div class="read">
+      <h3>Why this needs GenAI, not a decision tree</h3>
+      <ul>
+        <li><strong>Free text in any language:</strong> it understands dialects and code-mixed speech instead of forcing a form.</li>
+        <li><strong>Context:</strong> it asks "Since when?" or "Is there a rash?" only when the answer changes the route.</li>
+        <li><strong>Differential reasoning:</strong> a ranked list of likely specialties, explained simply.</li>
+        <li><strong>Safety framing:</strong> outputs are guidance, never a diagnosis.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="part">
+    <div class="read">
+      <h2>The deck</h2>
+      <p>Problem, personas, why now, the solution, the build plan, the question engine, metrics, unit economics and go-to-market, in ten slides.</p>
+    </div>
+    <div class="slides" tabindex="0" aria-label="SwasthyaSaathi deck, use arrow keys to move between slides">
+      <div class="stage-s">
+        <img class="slide" src="img/slide-01.jpg" width="1600" height="900" alt="Slide 1: SwasthyaSaathi, the AI front door to Indian healthcare">
+        <img class="slide" src="img/slide-02.jpg" width="1600" height="900" loading="lazy" alt="Slide 2: the problem and the three pain points attacked first">
+        <img class="slide" src="img/slide-03.jpg" width="1600" height="900" loading="lazy" alt="Slide 3: who we serve and where today's apps abandon them">
+        <img class="slide" src="img/slide-04.jpg" width="1600" height="900" loading="lazy" alt="Slide 4: why now, and why this needs GenAI">
+        <img class="slide" src="img/slide-05.jpg" width="1600" height="900" loading="lazy" alt="Slide 5: the triage copilot, before and after">
+        <img class="slide" src="img/slide-06.jpg" width="1600" height="900" loading="lazy" alt="Slide 6: how we build it, the vernacular front door and the triage brain">
+        <img class="slide" src="img/slide-07.jpg" width="1600" height="900" loading="lazy" alt="Slide 7: the question engine, prompt, data model and core APIs">
+        <img class="slide" src="img/slide-08.jpg" width="1600" height="900" loading="lazy" alt="Slide 8: metrics, with correctly routed consultations per week as the North Star">
+        <img class="slide" src="img/slide-09.jpg" width="1600" height="900" loading="lazy" alt="Slide 9: unit economics of one triage session">
+        <img class="slide" src="img/slide-10.jpg" width="1600" height="900" loading="lazy" alt="Slide 10: go-to-market, land the funnel then monetise it">
+      </div>
+      <div class="ctrl"><button class="prev" type="button">← Previous</button><span class="slides-count"></span><button class="next-s" type="button">Next →</button><a href="SwasthyaSaathi_GenAI.pdf">Open the PDF</a></div>
+    </div>
+  </section>
+
+  <section class="part">
+    <div class="read">
+      <h2>Build update: from a broken prototype to a live app</h2>
+      <p>The original Replit prototype stopped working, so I rebuilt it from the exported code and extended it from a triage chat into the full Describe → Triage → Route → Act loop.</p>
+      <ul>
+        <li><strong>Working triage again:</strong> the old Gemini model had been retired, so every reply failed. The model is now configurable, with retry and fallback when one is overloaded.</li>
+        <li><strong>Safer red-flag gate:</strong> chest pain, trouble breathing, seizure, heavy bleeding and unconsciousness, in all three languages, trigger a hard-coded "call 112" screen before any LLM call. I widened the patterns after finding that "trouble breathing" slipped through.</li>
+        <li><strong>Provider matching and booking:</strong> verified doctors by specialty and city or distance; pick a slot, get a reference code; double-booking is blocked in the database.</li>
+        <li><strong>Hosted web app and Android build:</strong> the React app is public, and the same code is wrapped with Capacitor into an APK built by GitHub Actions.</li>
+        <li><strong>Cold-start handling:</strong> the free server sleeps when idle, so the app waits, retries and says "waking up the server" instead of failing.</li>
+      </ul>
+    </div>
+    <ol class="flow" aria-label="Architecture">
+      <li><b>Android / web app</b><span>React, wrapped with Capacitor</span></li>
+      <li class="key"><b>Red-flag gate</b><span>Rules run before any LLM call</span></li>
+      <li><b>API on Render</b><span>Express + TypeScript</span></li>
+      <li><b>Gemini</b><span>Triage, with model fallback</span></li>
+      <li><b>MongoDB Atlas</b><span>Sessions, providers, bookings</span></li>
+    </ol>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Endpoint</th><th>Method</th><th>What it does</th></tr></thead>
+        <tbody>
+          <tr><td><code>/triage/analyze</code></td><td>POST</td><td>Takes symptom text and returns urgency plus a likely specialty</td></tr>
+          <tr><td><code>/triage/followup</code></td><td>POST</td><td>Serves the next clarifying question in the conversation</td></tr>
+          <tr><td><code>/providers/match</code></td><td>GET</td><td>Verified providers for the specialty, near the patient</td></tr>
+          <tr><td><code>/bookings/create</code></td><td>POST</td><td>Books a consultation, test or teleconsultation</td></tr>
+          <tr><td><code>/escalate/redflag</code></td><td>POST</td><td>Skips the LLM and hands off to a human doctor</td></tr>
+          <tr><td><code>/user/history</code></td><td>GET</td><td>Past triage results for chronic-care continuity</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="part">
+    <div class="read">
+      <h2>Product decisions worth noting</h2>
+      <ul>
+        <li><strong>Safety is deterministic, not generative.</strong> Emergencies are caught by rules, so the LLM can never talk a patient out of one.</li>
+        <li><strong>Honest about data.</strong> Providers and bookings are labelled demo; no real appointment is made. Onboarding and verifying real providers is the next product problem.</li>
+        <li><strong>Reliability as UX.</strong> Three failure modes (retired model, overloaded model, sleeping server) each became a handled state instead of a generic error.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="part">
+    <div class="read">
+      <h2>Success metrics</h2>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Level</th><th>Metric</th><th>Why</th></tr></thead>
+        <tbody>
+          <tr><td>North Star</td><td>Correctly routed consultations per week</td><td>Consults where the doctor confirms the recommended specialty was right</td></tr>
+          <tr><td>Engagement</td><td>Session completion; 30-day repeat use</td><td>Repeat use matters most for chronic patients</td></tr>
+          <tr><td>Business</td><td>Referral revenue per routed consult; provider fill rate</td><td>The referral is how free triage pays for itself</td></tr>
+          <tr><td>Guardrails</td><td>Red-flag miss rate (must stay ~0); over-referral rate</td><td>Never miss an emergency, and don't flood emergency rooms with minor cases</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="part">
+    <div class="read">
+      <h2>Go-to-market and defensibility</h2>
+      <ol>
+        <li><strong>Land:</strong> free, zero-download vernacular triage on WhatsApp, seeded in Tier 2/3 districts through ASHA workers and local pharmacies.</li>
+        <li><strong>Monetise:</strong> commissions from verified clinics, labs and e-pharmacies for routed patients.</li>
+        <li><strong>Scale:</strong> license the triage API to insurers and integrate with the Ayushman Bharat Digital Mission.</li>
+      </ol>
+      <p><strong>Data moat:</strong> every completed consult adds to an India-specific symptom → specialty → outcome dataset that generic LLMs can't easily copy.</p>
+      <h3>Risks</h3>
+      <ul>
+        <li><strong>Accuracy vs clinical risk:</strong> wrong triage could delay care. Mitigation: clinical validation sets, and a rules engine for red flags in parallel.</li>
+        <li><strong>Trust:</strong> rural users distrust digital-only services. Mitigation: pharmacies and ASHA workers as the physical on-ramp.</li>
+      </ul>
+      <h3>Status</h3>
+      <p>Done: triage, red-flag gate, provider matching, booking, hosted web app, Android debug build, backend. Not yet tested on a real phone. Not built yet: voice input, WhatsApp and IVR, chronic-care history, human-doctor handoff, referral tracking, clinical validation.</p>
+    </div>
+  </section>
+
+  <section class="part">
+    <div class="read"><h2>Skills this shows</h2></div>
+    <ul class="skills">
+      <li>GenAI product architecture</li>
+      <li>Safety guardrails</li>
+      <li>System design: APIs and data model</li>
+      <li>Vernacular persona design</li>
+      <li>AARRR metrics with guardrails</li>
+      <li>Go-to-market and moats</li>
+      <li>Shipping a working build</li>
+    </ul>
+  </section>
+
+  <nav class="next" aria-label="More work">
+    <a href="../cube-trial-to-paid/">← CUBE: trial-to-paid</a>
+    <a href="../ai-try-on/">Next: AI Try-On PRD →</a>
+  </nav>
+</main>
+
+<footer class="foot">
+  <span>Karthik Pandurangan · 2026</span>
+  <span><a href="../../assets/Karthik_Pandurangan_Resume.pdf">Resume</a> · <a href="http://www.linkedin.com/in/karthik-pandurangan-2b660627a">LinkedIn</a> · <a href="https://github.com/Karthik07p">GitHub</a></span>
+</footer>
+
+<script src="../../assets/site.js"></script>
+</body>
+</html>

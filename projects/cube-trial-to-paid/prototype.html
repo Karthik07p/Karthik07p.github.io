@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>body{margin:0}</style>
+<title>Trial-to-Paid Prototype</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: step rail on top; a browser-framed product screen on the left, a "behind the scenes" CRM log on the right (stacks on phones). */
+:root {
+  --bg: #eef2f3; --surface: #ffffff; --sunk: #f6f8f9; --ink: #142029; --muted: #5a6872; --line: #d5dde1;
+  --accent: #0b6f78; --accent-soft: #dcefF0; --amber: #a8650a; --amber-soft: #fbeed6; --good: #2f7d4a; --good-soft: #e1f1e6;
+  --pin: #9b2f6e; --pin-soft: #f6e3ee;
+  --display: "Archivo", "Segoe UI", system-ui, sans-serif;
+  --body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0f171c; --surface: #172229; --sunk: #121b21; --ink: #e4ecef; --muted: #98a8b1; --line: #2b3a43;
+  --accent: #4fb8c1; --accent-soft: #163a3e; --amber: #e0a64a; --amber-soft: #3a2c14; --good: #6cc48a; --good-soft: #17331f;
+  --pin: #e48bbd; --pin-soft: #3a1b2d; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #0f171c; --surface: #172229; --sunk: #121b21; --ink: #e4ecef; --muted: #98a8b1; --line: #2b3a43;
+  --accent: #4fb8c1; --accent-soft: #163a3e; --amber: #e0a64a; --amber-soft: #3a2c14; --good: #6cc48a; --good-soft: #17331f;
+  --pin: #e48bbd; --pin-soft: #3a1b2d; color-scheme: dark }
+
+* { box-sizing: border-box }
+body { background: var(--bg); color: var(--ink); font: 15px/1.5 var(--body); }
+.wrap { max-width: 1180px; margin: 0 auto; padding-block: 20px 40px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); display: grid; gap: 16px }
+header.top { display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: end; justify-content: space-between }
+h1 { font: 700 22px/1.2 var(--display); margin: 0; text-wrap: balance }
+.sub { color: var(--muted); margin: 4px 0 0; max-width: 62ch; font-size: 14px }
+.toggle { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); cursor: pointer; user-select: none }
+.toggle input { accent-color: var(--pin); width: 16px; height: 16px }
+
+.rail { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px; list-style: none; margin: 0; padding: 0; overflow-x: auto }
+.rail button { width: 100%; text-align: left; border: 1px solid var(--line); background: var(--surface); color: var(--muted);
+  border-radius: 6px; padding: 8px 10px; font: 500 12px/1.3 var(--body); cursor: pointer; min-height: 52px }
+.rail button b { display: block; font: 600 11px var(--mono); letter-spacing: .04em; color: var(--muted) }
+.rail button[aria-current="step"] { border-color: var(--accent); color: var(--ink); box-shadow: inset 0 -3px 0 var(--accent) }
+.rail button.done b { color: var(--good) }
+.rail button:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px }
+
+.stage { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 16px; align-items: start }
+@media (max-width: 880px) { .stage { grid-template-columns: minmax(0, 1fr) } .rail { grid-template-columns: repeat(7, minmax(108px, 1fr)) } }
+
+.frame { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; min-width: 0 }
+.chrome { display: flex; align-items: center; gap: 10px; padding: 8px 12px; background: var(--sunk); border-bottom: 1px solid var(--line) }
+.dots { display: flex; gap: 5px } .dots i { width: 9px; height: 9px; border-radius: 50%; background: var(--line); display: block }
+.url { flex: 1; min-width: 0; font: 12px var(--mono); color: var(--muted); background: var(--surface); border: 1px solid var(--line);
+  border-radius: 5px; padding: 3px 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis }
+.screen { padding: 28px; min-height: 460px; display: grid; align-content: start; gap: 18px }
+@media (max-width: 520px) { .screen { padding: 18px } }
+
+.brand { font: 700 15px var(--display); letter-spacing: .08em; color: var(--accent) }
+h2 { font: 600 24px/1.2 var(--display); margin: 0; text-wrap: balance }
+h3 { font: 600 16px/1.3 var(--display); margin: 0 }
+p { margin: 0 }
+.muted { color: var(--muted) }
+.small { font-size: 13px }
+.row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center }
+.col { display: grid; gap: 10px }
+
+.btn { font: 600 14px var(--body); border-radius: 6px; padding: 10px 16px; cursor: pointer; border: 1px solid var(--accent);
+  background: var(--accent); color: var(--surface) }
+.btn.ghost { background: transparent; color: var(--accent) }
+.btn.quiet { background: transparent; border-color: var(--line); color: var(--ink) }
+.btn:disabled { opacity: .45; cursor: not-allowed }
+.field { display: grid; gap: 6px; font-size: 13px; color: var(--muted) }
+.field input, .field select { font: 15px var(--body); color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 9px 11px; width: 100% }
+.sso { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px }
+@media (max-width: 520px) { .sso { grid-template-columns: 1fr } }
+
+.chips { display: flex; flex-wrap: wrap; gap: 8px }
+.chip { border: 1px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 999px; padding: 6px 12px; font: 500 13px var(--body); cursor: pointer }
+.chip[aria-pressed="true"] { border-color: var(--accent); background: var(--accent-soft); color: var(--ink) }
+
+.hero { display: grid; gap: 14px; max-width: 560px }
+.offer { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 13px; color: var(--muted) }
+.offer span::before { content: "✓ "; color: var(--good); font-weight: 600 }
+
+.card { border: 1px solid var(--line); border-radius: 8px; padding: 14px 16px; background: var(--surface) }
+.banner { border-radius: 8px; padding: 12px 14px; display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; justify-content: space-between }
+.banner.trial { background: var(--accent-soft) }
+.banner.nudge { background: var(--amber-soft); border: 1px solid color-mix(in srgb, var(--amber) 40%, transparent) }
+.banner.ok { background: var(--good-soft) }
+.meter { height: 6px; border-radius: 3px; background: var(--line); overflow: hidden; min-width: 120px; flex: 1 }
+.meter i { display: block; height: 100%; background: var(--accent) }
+
+.app { display: grid; grid-template-columns: 168px minmax(0, 1fr); gap: 18px }
+@media (max-width: 640px) { .app { grid-template-columns: 1fr } .side { display: none } }
+.side { display: grid; gap: 4px; align-content: start; font-size: 13px; color: var(--muted) }
+.side div { padding: 6px 8px; border-radius: 5px } .side .on { background: var(--sunk); color: var(--ink); font-weight: 500 }
+.check { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px }
+.check li { display: flex; gap: 12px; align-items: center; border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px }
+.check li.done { background: var(--sunk) }
+.check li.done .t { color: var(--muted); text-decoration: line-through }
+.box { width: 22px; height: 22px; border-radius: 50%; border: 1.5px solid var(--line); flex: none; display: grid; place-items: center; font-size: 12px; color: var(--surface) }
+.check li.done .box { background: var(--good); border-color: var(--good) }
+.check .t { flex: 1; min-width: 0 }
+.check .t small { display: block; color: var(--muted); font-size: 12px }
+
+.plans { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px }
+@media (max-width: 560px) { .plans { grid-template-columns: 1fr } }
+.plan { border: 1px solid var(--line); border-radius: 8px; padding: 14px; display: grid; gap: 8px }
+.plan .price { font: 600 20px var(--display); font-variant-numeric: tabular-nums }
+.stepper { display: inline-flex; align-items: center; border: 1px solid var(--line); border-radius: 6px; overflow: hidden }
+.stepper button { border: 0; background: var(--sunk); color: var(--ink); width: 32px; height: 32px; font-size: 16px; cursor: pointer }
+.stepper output { min-width: 40px; text-align: center; font: 600 14px var(--mono) }
+.total { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px; border-top: 1px solid var(--line); padding-top: 12px }
+.total strong { font: 700 22px var(--display); font-variant-numeric: tabular-nums }
+
+.pin { display: none; font: 500 11px var(--mono); color: var(--pin); background: var(--pin-soft); border-radius: 4px; padding: 1px 6px; vertical-align: 2px; margin-left: 6px; white-space: nowrap }
+body.notes .pin { display: inline-block }
+
+aside.log { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 16px; display: grid; gap: 12px; min-width: 0 }
+aside.log h3 { font-size: 14px; display: flex; justify-content: space-between; gap: 8px }
+aside.log h3 span { font: 500 11px var(--mono); color: var(--muted) }
+.events { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px }
+.events li { border-left: 2px solid var(--line); padding: 2px 0 2px 10px; font-size: 13px }
+.events li.new { border-color: var(--accent) }
+.events time { display: block; font: 11px var(--mono); color: var(--muted) }
+.deal { background: var(--sunk); border-radius: 8px; padding: 10px 12px; font-size: 13px; display: grid; gap: 4px }
+.deal dl { margin: 0; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 3px 10px }
+.deal dt { color: var(--muted) } .deal dd { margin: 0; font-weight: 500; overflow-wrap: anywhere }
+.stagepill { display: inline-block; font: 600 11px var(--mono); padding: 1px 7px; border-radius: 999px; background: var(--accent-soft); color: var(--accent) }
+.stagepill.won { background: var(--good-soft); color: var(--good) }
+.before { font-size: 12px; color: var(--muted); border-top: 1px dashed var(--line); padding-top: 10px }
+.before b { color: var(--ink); font-weight: 600 }
+.navrow { display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap }
+@media (prefers-reduced-motion: no-preference) { .screen > * { animation: rise .25s ease-out both } @keyframes rise { from { opacity: .4; transform: translateY(4px) } } }
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>Trial-to-paid flow, proposed</h1>
+      <p class="sub">Clickable prototype for the PRD. Walk a sample sign-up from the pricing page to a paid portal; the right panel shows what reaches the CRM at each step. Sample data only.</p>
+    </div>
+    <label class="toggle"><input type="checkbox" id="notes" checked> Show requirement tags (R1 to R9)</label>
+  </header>
+
+  <ol class="rail" id="rail" aria-label="Flow steps"></ol>
+
+  <div class="stage">
+    <section class="frame" aria-live="polite">
+      <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url" id="url"></div></div>
+      <div class="screen" id="screen"></div>
+    </section>
+    <aside class="log" aria-label="Behind the scenes">
+      <h3>Behind the scenes <span>Freshsales</span></h3>
+      <div class="deal" id="deal"></div>
+      <ul class="events" id="events"></ul>
+      <p class="before" id="before"></p>
+    </aside>
+  </div>
+</div>
+
+<script>
+const STEPS = [
+  { key: "cta", label: "Pricing CTA" }, { key: "signup", label: "Sign up" }, { key: "qualify", label: "3 questions" },
+  { key: "ready", label: "Portal live" }, { key: "setup", label: "First project" }, { key: "nudge", label: "Day 10 nudge" },
+  { key: "upgrade", label: "Upgrade" }
+];
+// Prices from cube.ms/pricing (annual billing, INR, per user per month), viewed 27 Oct 2026
+const PRICE = { cde: 2499, pm: 3999 };
+const BEFORE = {
+  cta: "Today: six different CTA labels; trial length not stated.",
+  signup: "Today: same entry screen. Nothing reaches the CRM.",
+  qualify: "Today: no questions, so a 5-person studio and a city corporation get the same trial.",
+  ready: "Today: some requests wait at Trial_Requested; 2 never went live. 18 of 28 sign-ups never got a deal.",
+  setup: "Today: an empty portal. 26 of 28 trials went live, but there is no first-run guidance.",
+  nudge: "Today: trials expire silently. Old trials were bulk-extended to 30 Sep 2026.",
+  upgrade: "Today: no upgrade inside the trial. 0 of 28 self-serve trials paid on their own."
+};
+const S = {
+  i: 0, done: new Set(), email: "priya@studiokestrel.in", role: "BIM coordinator", size: "11-50", type: "Commercial building",
+  tasks: [
+    { t: "Create your first project", d: "Pre-filled: Office tower, Pune", done: false },
+    { t: "Upload a model or drawing", d: "Or use the sample IFC model", done: false },
+    { t: "Raise an issue on a sheet", d: "Pin a clash and assign it", done: false },
+    { t: "Invite a teammate", d: "Guests are free", done: false },
+    { t: "Send a transmittal", d: "Issue drawings for review", done: false }
+  ],
+  seats: { cde: 5, pm: 0 }, paid: false, events: []
+};
+const $ = id => document.getElementById(id);
+const pin = r => `<span class="pin">${r}</span>`;
+const inr = n => "₹" + n.toLocaleString("en-IN");
+const ownerFor = () => (S.size === "200+" || S.type === "Government / PSU") ? "Enterprise team" : "Self-serve owner (round-robin)";
+
+function log(text, when) { S.events.unshift({ text, when, fresh: true }); }
+
+function go(i) {
+  S.events.forEach(e => e.fresh = false);
+  if (i > S.i) for (let k = S.i; k < i; k++) enter(k + 1);
+  S.i = i; render();
+  document.querySelector(".frame").scrollIntoView({ block: "nearest", behavior: "smooth" });
+}
+// Side effects that happen when a step is first reached
+function enter(k) {
+  if (S.done.has(k)) return;
+  S.done.add(k);
+  const key = STEPS[k].key;
+  if (key === "qualify") log(`Contact created: ${S.email}`, "Day 0, 10:02");
+  if (key === "ready") { log(`Deal created in Self-Serve plan, stage Trial. Owner: ${ownerFor()}`, "Day 0, 10:03"); log("Portal live in 48 seconds; trial ends day 14", "Day 0, 10:03"); }
+  if (key === "setup") log("Event: portal_live, first_session_started", "Day 0, 10:05");
+  if (key === "nudge") log(`Day 10 nudge sent (in-app + email). Checklist ${S.tasks.filter(t => t.done).length} of 5`, "Day 10, 09:00");
+  if (key === "upgrade") log("Event: upgrade_screen_viewed", "Day 10, 09:14");
+}
+
+function screen() {
+  const k = STEPS[S.i].key;
+  if (k === "cta") return {
+    url: "cube.ms/pricing",
+    html: `<div class="brand">CUBE</div>
+      <div class="hero">
+        <h2>Run your next project on one platform</h2>
+        <p class="muted">Documents, reviews, issues and transmittals for design and construction teams.</p>
+        <div class="row"><button class="btn" data-next>Start 14-day free trial</button><button class="btn ghost" data-next>Talk to sales</button>${pin("one CTA label")}</div>
+        <div class="offer"><span>14 days, full CDE</span><span>No credit card</span><span>Keep your data when you upgrade</span></div>
+      </div>
+      <p class="small muted">Every button on the site uses the same words, and the trial length is stated up front.</p>`
+  };
+  if (k === "signup") return {
+    url: "app.cube.ms/signup",
+    html: `<div class="brand">CUBE</div><h2>Start your free trial</h2>
+      <div class="col" style="max-width:420px">
+        <label class="field" for="email">Work email<input id="email" type="email" value="${S.email}" autocomplete="off"></label>
+        <button class="btn" data-next>Continue</button>
+        <p class="small muted" style="text-align:center">or</p>
+        <div class="sso"><button class="btn quiet" data-next>Google</button><button class="btn quiet" data-next>Microsoft</button><button class="btn quiet" data-next>Apple</button></div>
+      </div>
+      <p class="small muted">The entry screen stays as it is today. ${pin("R8 test flag: staff domains are tagged here")}</p>`
+  };
+  if (k === "qualify") {
+    const chips = (name, opts) => `<div class="chips" role="group">${opts.map(o => `<button class="chip" data-chip="${name}" aria-pressed="${S[name] === o}">${o}</button>`).join("")}</div>`;
+    return {
+      url: "app.cube.ms/signup/about-you",
+      html: `<div class="brand">CUBE</div><h2>Three quick questions ${pin("R2")}</h2>
+        <p class="muted">So we set up the right portal for you. Takes about 20 seconds.</p>
+        <div class="col"><h3>Your role</h3>${chips("role", ["BIM coordinator", "Project manager", "Architect", "Owner / developer", "Other"])}</div>
+        <div class="col"><h3>Company size</h3>${chips("size", ["1-10", "11-50", "51-200", "200+"])}</div>
+        <div class="col"><h3>Main project type</h3>${chips("type", ["Commercial building", "Residential", "Rail / metro", "Industrial", "Government / PSU"])}</div>
+        <div class="row"><button class="btn" data-next>Create my portal</button><span class="small muted" id="route">Routes to: ${ownerFor()}</span></div>`
+    };
+  }
+  if (k === "ready") return {
+    url: "studiokestrel.app.cube.ms",
+    html: `<div class="banner ok"><strong>Your portal is live</strong><span class="small">studiokestrel.app.cube.ms ${pin("R3 instant")}</span></div>
+      <h2>Welcome, Priya</h2>
+      <p class="muted">Your trial runs for 14 days, until day 14. Everything you create stays when you upgrade.</p>
+      <div class="card row" style="justify-content:space-between">
+        <div><h3>Your CUBE contact ${pin("R1")}</h3><p class="small muted">${ownerFor() === "Enterprise team" ? "An enterprise specialist will call within one business day." : "Reach your product specialist any time from the help menu."}</p></div>
+        <button class="btn quiet">Book a 20-min setup call</button>
+      </div>
+      <div><button class="btn" data-next>Set up my first project</button></div>`
+  };
+  if (k === "setup" || k === "nudge") {
+    const n = S.tasks.filter(t => t.done).length, day = k === "nudge" ? 10 : 0;
+    const list = S.tasks.map((t, j) => `<li class="${t.done ? "done" : ""}"><span class="box" aria-hidden="true">${t.done ? "✓" : ""}</span><span class="t">${t.t}<small>${t.d}</small></span>${t.done ? "" : `<button class="btn quiet" data-task="${j}">Do it</button>`}</li>`).join("");
+    const banner = k === "nudge"
+      ? `<div class="banner nudge"><div><strong>4 days left in your trial</strong> ${pin("R7")}<p class="small">You have ${n} of 5 setup steps done. Upgrade now and your project, files and issues carry over.</p></div><div class="row"><button class="btn" data-next>See plans</button><button class="btn quiet">Talk to sales</button></div></div>`
+      : `<div class="banner trial"><span class="small"><strong>Day ${day + 1} of 14</strong> in your trial</span><div class="meter" aria-hidden="true"><i style="width:${(day + 1) / 14 * 100}%"></i></div><button class="btn ghost" data-jump="6">Upgrade</button></div>`;
+    return {
+      url: "studiokestrel.app.cube.ms/home",
+      html: `${banner}
+        <div class="app"><nav class="side"><div class="on">Home</div><div>Projects</div><div>Folders</div><div>Issues</div><div>Reviews</div><div>Transmittals</div></nav>
+          <div class="col"><div class="row" style="justify-content:space-between"><h2>Get set up ${pin("R6")}</h2><span class="small muted">${n} of 5 done</span></div>
+            <ul class="check">${list}</ul>
+            ${k === "setup" ? `<div class="navrow"><span class="small muted">Tick a few steps, then skip ahead to day 10.</span><button class="btn" data-next>Skip to day 10</button></div>` : ""}
+          </div></div>`
+    };
+  }
+  if (k === "upgrade") {
+    const total = (S.seats.cde * PRICE.cde + S.seats.pm * PRICE.pm) * 12;
+    const plan = (id, name, mods) => `<div class="plan"><h3>${name}</h3><p class="small muted">${mods}</p><p class="price">${inr(PRICE[id])}<span class="small muted"> / user / month</span></p>
+      <div class="row"><span class="stepper"><button data-seat="${id}" data-d="-1" aria-label="Fewer ${name} seats">−</button><output>${S.seats[id]}</output><button data-seat="${id}" data-d="1" aria-label="More ${name} seats">+</button></span><span class="small muted">seats</span></div></div>`;
+    if (S.paid) return {
+      url: "studiokestrel.app.cube.ms/billing",
+      html: `<div class="banner ok"><strong>Studio Kestrel is on a paid plan</strong></div>
+        <h2>You're all set</h2>
+        <p class="muted">Your project, files and issues from the trial are still here. Your invoice goes to ${S.email}.</p>
+        <div class="row"><button class="btn" data-jump="0">Restart the walkthrough</button></div>`
+    };
+    return {
+      url: "studiokestrel.app.cube.ms/upgrade",
+      html: `<h2>Choose your plan ${pin("R4")}</h2>
+        <p class="muted">Annual billing. Your trial data carries over. Prices from the CUBE pricing page.</p>
+        <div class="plans">${plan("cde", "Common Data Environment", "Folders, issues, reviews, tasks, transmittals")}${plan("pm", "Project Management", "Schedules, estimates, contracts, bills")}</div>
+        <div class="total"><span class="muted small">${S.seats.cde + S.seats.pm} seats × 12 months, billed annually</span><strong>${inr(total)}<span class="small muted"> / year</span></strong></div>
+        <div class="row"><button class="btn" data-pay ${total ? "" : "disabled"}>Pay by card</button><button class="btn quiet" data-quote>Request a quote instead</button></div>`
+    };
+  }
+}
+
+function render() {
+  const sc = screen();
+  $("url").textContent = sc.url;
+  $("screen").innerHTML = sc.html;
+  $("rail").innerHTML = STEPS.map((s, j) => `<li><button data-jump="${j}" ${j === S.i ? 'aria-current="step"' : ""} class="${S.done.has(j) && j !== S.i ? "done" : ""}"><b>${String(j + 1).padStart(2, "0")}</b>${s.label}</button></li>`).join("");
+  const reached = S.done.has(3);
+  const stage = S.paid ? '<span class="stagepill won">Pro Plan (Won)</span>' : reached ? '<span class="stagepill">Trial</span>' : "Not created yet";
+  $("deal").innerHTML = `<dl><dt>Deal</dt><dd>${reached ? "Studio Kestrel - Self-serve" : "Not created yet"}</dd><dt>Stage</dt><dd>${stage} ${pin("R9")}</dd><dt>Owner</dt><dd>${reached ? ownerFor() : "None"}</dd><dt>Portal</dt><dd>${reached ? "studiokestrel.app.cube.ms" : "None"}</dd></dl>`;
+  $("events").innerHTML = S.events.length ? S.events.map(e => `<li class="${e.fresh ? "new" : ""}"><time>${e.when}</time>${e.text}</li>`).join("") : '<li class="muted">Nothing yet. Start the trial to see what the CRM receives.</li>';
+  $("before").innerHTML = `<b>Before:</b> ${BEFORE[STEPS[S.i].key]}`;
+}
+
+document.addEventListener("click", e => {
+  const b = e.target.closest("button"); if (!b) return;
+  if (b.hasAttribute("data-next")) {
+    const em = $("email"); if (em) S.email = em.value.trim() || S.email;
+    go(Math.min(S.i + 1, STEPS.length - 1));
+  } else if (b.dataset.jump) { const j = +b.dataset.jump; if (j === 0 && S.paid) location.reload(); else go(j); }
+  else if (b.dataset.chip) { S[b.dataset.chip] = b.textContent; render(); }
+  else if (b.dataset.task) {
+    const t = S.tasks[+b.dataset.task]; t.done = true;
+    S.events.forEach(x => x.fresh = false);
+    log(`Event: checklist step done (${t.t.toLowerCase()})`, STEPS[S.i].key === "nudge" ? "Day 10" : "Day 0"); render();
+  } else if (b.dataset.seat) { const id = b.dataset.seat; S.seats[id] = Math.max(0, Math.min(200, S.seats[id] + +b.dataset.d)); render(); }
+  else if (b.hasAttribute("data-pay")) {
+    S.paid = true; S.events.forEach(x => x.fresh = false);
+    log("Payment received. Deal moved to Pro Plan (Won); portal switched to paid", "Day 10, 09:20"); render();
+  } else if (b.hasAttribute("data-quote")) {
+    S.events.forEach(x => x.fresh = false);
+    log(`Quote request: ${S.seats.cde} CDE + ${S.seats.pm} PM seats. Task created for ${ownerFor()}`, "Day 10, 09:18"); render();
+  }
+});
+$("notes").addEventListener("change", e => document.body.classList.toggle("notes", e.target.checked));
+document.body.classList.add("notes");
+render();
+</script>
+
+</html>

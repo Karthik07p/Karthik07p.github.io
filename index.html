@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Karthik Pandurangan · Product</title>
+<meta name="description" content="Product portfolio of Karthik Pandurangan: PRDs, prototypes and analyses from B2B SaaS and AI products.">
+<script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+
+<header class="top">
+  <a class="me" href="./"><i aria-hidden="true">kp</i>Karthik Pandurangan</a>
+  <nav aria-label="Main">
+    <a href="#work">Work</a>
+    <a href="#experience">Experience</a>
+    <a href="#about">About</a>
+    <a href="assets/Karthik_Pandurangan_Resume.pdf">Resume</a>
+    <button class="theme-btn" type="button">Theme</button>
+  </nav>
+</header>
+
+<main class="wrap">
+
+  <!-- hero -->
+  <section class="hero">
+    <div class="hero-copy">
+      <span class="status">Product &amp; AI intern at CUBE · BITS Pilani, Goa</span>
+      <h1>I find where products <em class="squiggle">leak<svg viewBox="0 0 200 20" preserveAspectRatio="none" aria-hidden="true"><path d="M4 13 C 40 4, 70 18, 105 10 S 170 6, 196 12"/></svg></em>, then build the fix.</h1>
+      <p class="lede">I start from the real data, find the step where users drop off, write a PRD an engineer can build from, and usually ship a working prototype to prove it.</p>
+      <div class="ctas">
+        <a class="btn solid" href="#work">See the work <span class="arr">→</span></a>
+        <a class="btn line" href="assets/Karthik_Pandurangan_Resume.pdf">Resume (PDF)</a>
+      </div>
+    </div>
+
+    <div class="hero-art">
+    <div class="pin">
+      <img src="assets/karthik.jpg" width="440" height="503" alt="Karthik Pandurangan">
+      <span aria-hidden="true">that's me</span>
+    </div>
+    <figure class="spec" aria-label="Example from my work: CUBE's trial funnel">
+      <div class="spec-head">
+        <span class="label">Case file 01 · CUBE trial funnel</span>
+        <b>34 free trials. Where did they go?</b>
+      </div>
+      <div class="bars">
+        <div class="bar"><span>Requested</span><div class="track"><div class="fill" style="--w:100%"></div></div><b>34</b></div>
+        <div class="bar"><span>Went live</span><div class="track"><div class="fill" style="--w:94%"></div></div><b>32</b></div>
+        <div class="bar leak"><span>Paid</span><div class="track"><div class="fill" style="--w:6%"></div></div><b>2</b></div>
+        <div class="bar leak"><span>Won</span><div class="track"><div class="fill" style="--w:6%"></div></div><b>2</b></div>
+      </div>
+      <small>Trial portals joined to live CRM deals.</small>
+      <p class="note">The leak: 94% go live, only 6% ever pay. →&nbsp;<a href="projects/cube-trial-to-paid/" style="color:inherit">the fix</a></p>
+    </figure>
+    </div>
+  </section>
+
+  <div class="ticker" aria-label="What I work with">
+    <ul>
+      <li>PRDs</li><li>Funnel &amp; cohort analysis</li><li>RICE prioritisation</li><li>North Star metrics</li>
+      <li>Clickable prototypes</li><li>LLM workflows</li><li>Model Context Protocol</li><li>SQL</li>
+      <li>Go-to-market</li><li>User journeys</li><li>GitHub Actions</li>
+    </ul>
+  </div>
+
+  <!-- numbers -->
+  <section class="block" aria-label="By the numbers">
+    <div class="block-head reveal">
+      <p class="label"><b>00</b>By the numbers</p>
+      <h2>Small team, <em>real</em> numbers.</h2>
+    </div>
+    <div class="numbers reveal">
+      <div><b data-count="70">70<sup>k+</sup></b><span>users on CUBE, the construction SaaS I build for</span></div>
+      <div><b data-count="84">84</b><span>trial and paid portals I joined to 74 live CRM deals</span></div>
+      <div><b data-count="8">8</b><span>sales reps' calls, meetings and deals reported to the Director automatically, daily and weekly</span></div>
+      <div><b data-count="25">25<sup>%</sup></b><span>lift in funnel conversion from reactivation tests at GMR Varalakshmi Foundation</span></div>
+    </div>
+  </section>
+
+  <!-- work -->
+  <section class="block" id="work" aria-label="Selected work">
+    <div class="work-head reveal">
+      <div class="block-head">
+        <p class="label"><b>01</b>Selected work · <span id="work-count" class="filter-count"></span></p>
+        <h2>Case files</h2>
+      </div>
+      <div class="filter" id="work-filter" role="group" aria-label="Filter projects by type">
+        <button type="button" data-filter="all" aria-pressed="true">All</button>
+        <button type="button" data-filter="prd" aria-pressed="false">PRDs</button>
+        <button type="button" data-filter="prototype" aria-pressed="false">Prototypes &amp; live apps</button>
+        <button type="button" data-filter="ai" aria-pressed="false">AI products</button>
+        <button type="button" data-filter="analytics" aria-pressed="false">Data &amp; analytics</button>
+        <button type="button" data-filter="teardown" aria-pressed="false">Teardowns &amp; frameworks</button>
+      </div>
+    </div>
+
+    <div class="cards">
+      <a class="card feature reveal" href="projects/cube-trial-to-paid/" data-cats="prd prototype analytics">
+        <div class="meta">
+          <div class="tags"><span class="cat">PRD</span><span class="cat">Prototype</span><span class="cat">Data &amp; analytics</span><span>B2B SaaS</span></div>
+          <h3>CUBE: fixing the trial-to-paid drop-off</h3>
+          <p>I joined 84 trial and paid portals to 74 live CRM deals. 94% of trials went live, but only 6% ever paid, and most self-serve sign-ups never reached a salesperson. A PRD and clickable prototype for the fix.</p>
+          <span class="go">Read the case study →</span>
+        </div>
+        <div class="shot"><img src="projects/cube-trial-to-paid/img/funnel.png" width="1344" height="650" alt="Funnel chart: 32 of 34 trial portals went live and 2 became paid, against 50 of 50 contract-first portals won"></div>
+        <span class="idx">01 / 06</span>
+      </a>
+
+      <a class="card reveal" href="projects/swasthyasaathi/" data-cats="ai prototype">
+        <div class="vis slide"><img src="projects/swasthyasaathi/img/slide-01.jpg" width="1600" height="900" loading="lazy" alt="SwasthyaSaathi strategy deck cover: the AI front door to Indian healthcare"></div>
+        <span class="idx">02</span>
+        <div class="tags"><span class="cat">AI product</span><span class="cat">Live app</span><span>Healthcare</span></div>
+        <h3>SwasthyaSaathi: vernacular AI triage</h3>
+        <p>A triage assistant that takes symptoms in Hindi, Marathi or English, flags emergencies with a rule-based gate before any LLM call, and routes patients to the right specialist. Live web app, with an Android build.</p>
+        <div class="fact"><b>62%</b>of India's health spending is out-of-pocket, the problem it starts from</div>
+        <span class="go">Read the case study →</span>
+      </a>
+
+      <a class="card reveal" href="projects/ai-try-on/" data-cats="prd ai">
+        <div class="vis phone"><img src="projects/ai-try-on/img/m05-result.jpg" width="500" height="1163" loading="lazy" alt="Try-On result screen: a necklace previewed on the shopper's neckline"></div>
+        <span class="idx">03</span>
+        <div class="tags"><span class="cat">PRD</span><span class="cat">AI product</span><span>E-commerce</span></div>
+        <h3>AI Try-On for an online jewellery app</h3>
+        <p>A PRD for augmented-reality try-on of high-value jewellery: three personas, pain points mapped to features, six failure states, and India's data protection rules for facial data.</p>
+        <div class="fact"><b>25%</b>of product-page sessions using Try-On, the North Star target</div>
+        <span class="go">Read the PRD →</span>
+      </a>
+
+      <a class="card reveal" href="projects/link-to-windows/" data-cats="teardown">
+        <div class="vis print"><img src="projects/link-to-windows/img/slide-01.jpg" width="1600" height="900" loading="lazy" alt="Link to Windows teardown cover: key numbers and the phone-to-PC ecosystem"></div>
+        <span class="idx">04</span>
+        <div class="tags"><span class="cat">Teardown</span><span>Metrics</span><span>Consumer</span></div>
+        <h3>Teardown: Microsoft Link to Windows</h3>
+        <p>Why phone-to-PC switching is a stickiness problem for knowledge workers, which features save the most context switches, and why phone pickup rate is the headline metric.</p>
+        <div class="fact"><b>~900M</b>people use both Android and Windows, the gap it bridges</div>
+        <span class="go">Read the teardown →</span>
+      </a>
+
+      <a class="card reveal" href="projects/problem-framing/" data-cats="teardown">
+        <div class="vis slide top"><img src="projects/problem-framing/img/slide-01.jpg" width="1600" height="894" loading="lazy" alt="5W1H framework table for designing a digital temple"></div>
+        <span class="idx">05</span>
+        <div class="tags"><span class="cat">Framework</span><span>Problem framing</span></div>
+        <h3>Problem framing: Uber rides per user and a digital temple</h3>
+        <p>Two open-ended product problems taken apart with 5W1H before any solution: who the users are, what the business needs, the context, the success metrics and the constraints.</p>
+        <div class="fact"><b>5W1H</b>who, what, where, when, why and how, before designing anything</div>
+        <span class="go">See the frameworks →</span>
+      </a>
+
+      <div class="card soon reveal" data-cats="analytics">
+        <div class="vis chart" role="img" aria-label="Illustrative bar chart of revenue by buyer decile: the top 10% of buyers bring 42% of revenue; the other bars are illustrative">
+          <svg viewBox="0 0 220 90" preserveAspectRatio="none" aria-hidden="true">
+            <rect class="top" x="4" y="6" width="17" height="80"/>
+            <rect x="26" y="61" width="17" height="25"/><rect x="48" y="67" width="17" height="19"/><rect x="70" y="71" width="17" height="15"/>
+            <rect x="92" y="73" width="17" height="13"/><rect x="114" y="75" width="17" height="11"/><rect x="136" y="76" width="17" height="10"/>
+            <rect x="158" y="78" width="17" height="8"/><rect x="180" y="80" width="17" height="6"/><rect x="202" y="82" width="17" height="4"/>
+          </svg>
+          <span class="tag">top 10% of buyers → <b>42%</b> of revenue · other bars illustrative</span>
+        </div>
+        <span class="idx">06</span>
+        <div class="tags"><span class="cat">Data &amp; analytics</span><span>SQL</span><span>E-commerce</span></div>
+        <h3>E-commerce product analytics</h3>
+        <p>SQL funnel and cohort analysis on 50,000+ transactions to find which buyers drive repeat purchase, with a KPI model for order value, repeat rate and revenue spread.</p>
+        <div class="fact"><b>10% → 42%</b>the top tenth of buyers drove 42% of revenue</div>
+        <span class="label">Write-up coming soon</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- experience -->
+  <section class="block" id="experience" aria-label="Experience">
+    <div class="block-head reveal">
+      <p class="label"><b>02</b>Experience</p>
+      <h2>Where I've done it for real</h2>
+    </div>
+    <ol class="timeline">
+      <li class="reveal">
+        <div class="when"><b>Jul 2026 – Dec 2026</b><span>Indore, India</span></div>
+        <div class="what">
+          <h3>Product &amp; AI Automation Intern<small>CUBE Technologies · B2B SaaS (BIM, CDE, PMIS) for infrastructure projects, 70k+ users</small></h3>
+          <ul>
+            <li>Mapped the sign-up funnel across <b>84 trial and paid portals</b> joined to <b>74 live CRM deals</b>: trials activate at 94% but only <b>6% convert</b>. Wrote a PRD with RICE-ranked fixes and a clickable prototype.</li>
+            <li>Built an <b>automated CRM pipeline</b> (Freshsales API, GitHub Actions) that reports 8 sales reps' calls, meetings and deals to the Director daily and weekly.</li>
+            <li>Built an <b>AI workflow</b> that turns call recordings into notes and a branded follow-up deck, cutting assembly time by <b>over 70%</b>.</li>
+            <li>Prototyped a self-hosted contact-lookup tool using Model Context Protocol and web scrapers, replacing manual searches.</li>
+          </ul>
+        </div>
+      </li>
+      <li class="reveal">
+        <div class="when"><b>Jun 2025 – Aug 2025</b><span>Hyderabad, India</span></div>
+        <div class="what">
+          <h3>Program Strategy &amp; Operations Intern<small>GMR Varalakshmi Foundation · skilling program, 120+ learners in 5 villages</small></h3>
+          <ul>
+            <li>Built a <b>7-metric retention dashboard</b> whose findings moved <b>15% of the budget</b> to the highest-churn cohort.</li>
+            <li>Found 3 drop-off stages in the funnel and tested 2 reactivation ideas on dormant learners, <b>lifting conversion by 25%</b>.</li>
+          </ul>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <!-- about -->
+  <section class="block" id="about" aria-label="About">
+    <div class="block-head reveal">
+      <p class="label"><b>03</b>About</p>
+      <h2>An engineer who'd rather <em>ship</em> the fix than describe it.</h2>
+    </div>
+    <div class="about">
+      <div class="read reveal">
+        <p>I study Electrical and Electronics Engineering at BITS Pilani, Goa, and I'm spending my practice-school semester as a product and AI automation intern at CUBE.</p>
+        <p>The habit is the same on every project: get the real data first, find the one step where users drop, write it up so an engineer can build from it, then build a rough version myself to check it actually works. Lately that rough version is often an LLM workflow.</p>
+      </div>
+      <dl class="sheet reveal">
+        <div><dt>Now</dt><dd>Product &amp; AI Automation Intern, CUBE</dd></div>
+        <div><dt>Studying</dt><dd>B.E. Electrical &amp; Electronics, BITS Pilani Goa · 2023–27</dd></div>
+        <div><dt>School</dt><dd>Class XII 95.1% · Class X 93.6%, Hyderabad</dd></div>
+        <div><dt>Training</dt><dd>PM Fellowship, DoraemonDen</dd></div>
+        <div><dt>Also</dt><dd>Organiser, BITSMUN</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- toolkit -->
+  <section class="block" aria-label="Toolkit">
+    <div class="block-head reveal">
+      <p class="label"><b>04</b>Toolkit</p>
+      <h2>What I reach for</h2>
+    </div>
+    <div class="kit">
+      <div class="reveal">
+        <h3>Product</h3>
+        <ul class="chips"><li>PRDs</li><li>RICE</li><li>North Star &amp; metrics</li><li>Personas &amp; journeys</li><li>GTM</li><li>A/B testing</li><li>Root cause analysis</li><li>Guesstimates</li><li>Wireframing</li><li>Jira</li></ul>
+      </div>
+      <div class="reveal">
+        <h3>AI &amp; build</h3>
+        <ul class="chips"><li>Claude &amp; LLM workflows</li><li>MCP</li><li>Python</li><li>REST APIs</li><li>GitHub Actions</li><li>HTML/CSS/JS prototypes</li></ul>
+      </div>
+      <div class="reveal">
+        <h3>Data</h3>
+        <ul class="chips"><li>SQL</li><li>Funnel &amp; cohort analysis</li><li>Advanced Excel</li><li>Dashboards</li><li>CRM analytics</li></ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- contact -->
+  <section class="contact reveal" id="contact" aria-label="Contact">
+    <p class="label">05 · Say hello</p>
+    <h2>Got a funnel that <em>leaks</em>? Let's talk.</h2>
+    <p>I'm happy to walk through any of these case files, or hear about the problem you're working on.</p>
+    <div class="ctas">
+      <a class="btn solid" href="mailto:f20230215@goa.bits-pilani.ac.in">Email me <span class="arr">→</span></a>
+      <a class="btn line" href="http://www.linkedin.com/in/karthik-pandurangan-2b660627a">LinkedIn</a>
+      <a class="btn line" href="https://github.com/Karthik07p">GitHub</a>
+    </div>
+    <span class="email">f20230215@goa.bits-pilani.ac.in</span>
+  </section>
+</main>
+
+<footer class="foot">
+  <span>Karthik Pandurangan · 2026</span>
+  <span><a href="assets/Karthik_Pandurangan_Resume.pdf">Resume</a> · <a href="http://www.linkedin.com/in/karthik-pandurangan-2b660627a">LinkedIn</a> · <a href="https://github.com/Karthik07p">GitHub</a></span>
+</footer>
+
+<script src="assets/site.js"></script>
+</body>
+</html>

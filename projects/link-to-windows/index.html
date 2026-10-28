@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Link to Windows Teardown · Karthik Pandurangan</title>
+<meta name="description" content="Product teardown: how Microsoft's Link to Windows cuts context switching between phone and PC, who it serves, how it compares, and how to measure it.">
+<script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+
+<header class="top">
+  <a class="me" href="../../"><i aria-hidden="true">kp</i>Karthik Pandurangan</a>
+  <nav aria-label="Main">
+    <a href="../../#work">Work</a>
+    <a href="../../assets/Karthik_Pandurangan_Resume.pdf">Resume</a>
+    <a href="http://www.linkedin.com/in/karthik-pandurangan-2b660627a">LinkedIn</a>
+    <a href="https://github.com/Karthik07p">GitHub</a>
+    <button class="theme-btn" type="button">Theme</button>
+  </nav>
+</header>
+
+<main class="wrap">
+
+  <section class="case-head">
+    <p class="label">Teardown · Microsoft · Consumer</p>
+    <h1>Link to Windows: the invisible bridge between phone and PC</h1>
+    <p class="lede">My favourite product, taken apart: how Link to Windows cuts context switching, builds ecosystem lock-in through plain utility, and where it still has room to grow.</p>
+    <div class="ctas">
+      <a class="btn solid" href="#deck">Flip through the deck</a>
+      <a class="btn line" href="Link_to_Windows_Teardown.pdf">Deck (PDF, 7 slides)</a>
+    </div>
+  </section>
+
+  <section class="stats" aria-label="Market size">
+    <div class="stat"><b>1.4B</b><span>active Windows devices</span></div>
+    <div class="stat"><b>72%+</b><span>global smartphone share for Android</span></div>
+    <div class="stat"><b>~900M</b><span>people on both Android and Windows</span></div>
+    <div class="stat"><b>3</b><span>core capabilities: sync, continuity, file transfer</span></div>
+  </section>
+
+  <section class="part">
+    <div class="read">
+      <h2>The problem</h2>
+      <p>People who work across a phone and a PC lose focus constantly: missed notifications, awkward file transfers, and phone pickups that break their flow. The problem isn't the phone. It's the gap between devices.</p>
+      <h3>Why it matters to Microsoft</h3>
+      <p>The goal is not another standalone app. It's to make the phone and PC one continuous workspace, which raises Windows stickiness, Microsoft account sign-ins and use of Teams, OneDrive and Edge. Every deeply connected user is harder to switch away from Windows.</p>
+    </div>
+  </section>
+
+  <section class="part">
+    <div class="read"><h2>Who it's for</h2></div>
+    <div class="duo">
+      <div><h3>Knowledge workers · the priority segment</h3><p>On a PC eight or more hours a day with a high volume of notifications. They need to stay in flow, so every avoided phone pickup is the value.</p></div>
+      <div><h3>Students and remote collaborators</h3><p>Constantly moving between phone and laptop for notes, files and messages.</p></div>
+    </div>
+  </section>
+
+  <section class="part">
+    <div class="read">
+      <h2>The solution, ranked by context switches saved</h2>
+      <ol>
+        <li><strong>Notification, call and SMS sync:</strong> answer calls and reply to messages and OTPs without touching the phone.</li>
+        <li><strong>Universal clipboard and app mirroring:</strong> copy on one device, paste on the other; run phone apps on the PC.</li>
+        <li><strong>Instant file sharing:</strong> photos and files across, no cable.</li>
+      </ol>
+      <h3>Key user flow</h3>
+    </div>
+    <ol class="flow">
+      <li><b>Pair</b><span>Phone and PC link through a Microsoft account</span></li>
+      <li><b>Notify</b><span>Phone notifications appear on Windows instantly</span></li>
+      <li><b>Respond</b><span>Take calls and reply to SMS from the keyboard</span></li>
+      <li><b>Transfer</b><span>Move photos and files without a cable</span></li>
+      <li class="key"><b>Stay in flow</b><span>No need to reach for the phone</span></li>
+    </ol>
+  </section>
+
+  <section class="part" id="deck">
+    <div class="read">
+      <h2>The deck</h2>
+      <p>Overview and value proposition, segments, pain points, the three star features, a competitive matrix and the metrics framework.</p>
+    </div>
+    <div class="slides" tabindex="0" aria-label="Link to Windows deck, use arrow keys to move between slides">
+      <div class="stage-s">
+        <img class="slide" src="img/slide-01.jpg" width="1600" height="900" alt="Slide 1: Link to Windows, the invisible bridge between your phone and PC">
+        <img class="slide" src="img/slide-02.jpg" width="1600" height="900" loading="lazy" alt="Slide 2: what it is and why it exists">
+        <img class="slide" src="img/slide-03.jpg" width="1600" height="900" loading="lazy" alt="Slide 3: user segments and persona">
+        <img class="slide" src="img/slide-04.jpg" width="1600" height="900" loading="lazy" alt="Slide 4: pain points and how Link to Windows solves them">
+        <img class="slide" src="img/slide-05.jpg" width="1600" height="900" loading="lazy" alt="Slide 5: three star features">
+        <img class="slide" src="img/slide-06.jpg" width="1600" height="900" loading="lazy" alt="Slide 6: competitive analysis">
+        <img class="slide" src="img/slide-07.jpg" width="1600" height="900" loading="lazy" alt="Slide 7: metrics framework, gaps and recommendation">
+      </div>
+      <div class="ctrl"><button class="prev" type="button">← Previous</button><span class="slides-count"></span><button class="next-s" type="button">Next →</button><a href="Link_to_Windows_Teardown.pdf">Open the PDF</a></div>
+    </div>
+  </section>
+
+  <section class="part">
+    <div class="read">
+      <h2>How it stacks up</h2>
+      <p>Link to Windows is the only option with deep, OS-native integration and no hardware lock-in, an openness Apple can't copy.</p>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Option</th><th>Strength</th><th>Limit</th></tr></thead>
+        <tbody>
+          <tr><td>Link to Windows</td><td>Deep integration, any Android, any Windows PC</td><td>App streaming only on Samsung</td></tr>
+          <tr><td>Apple ecosystem</td><td>Best in class</td><td>Walled garden: iPhone and Mac only</td></tr>
+          <tr><td>Samsung DeX</td><td>Best Android-to-Windows experience</td><td>Samsung phones only</td></tr>
+          <tr><td>Intel Unison</td><td>Capable</td><td>Needs specific Intel hardware</td></tr>
+          <tr><td>Google Nearby Share</td><td>Works across devices</td><td>File sharing only, no continuity</td></tr>
+          <tr><td>AirDroid, Pushbullet</td><td>Works anywhere</td><td>Third-party workarounds with privacy risk</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="part">
+    <div class="read">
+      <h2>How to measure it</h2>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Area</th><th>Metric</th><th>What it tells you</th></tr></thead>
+        <tbody>
+          <tr><td>Behaviour (headline)</td><td>Phone pickups per hour, target: down</td><td>Whether the core value is delivered</td></tr>
+          <tr><td>Retention</td><td>D30 retention, paired vs unpaired users</td><td>Ecosystem stickiness</td></tr>
+          <tr><td>Engagement</td><td>Daily active sessions; notification action rate</td><td>How often people rely on it</td></tr>
+          <tr><td>Adoption</td><td>Photos and files transferred per daily user</td><td>File-sharing pull</td></tr>
+          <tr><td>Ecosystem</td><td>Phone Link users who go on to use Teams, OneDrive, Edge</td><td>The business payoff</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="part">
+    <div class="read">
+      <h2>Gaps, and the path to becoming the default</h2>
+      <ul>
+        <li><strong>WhatsApp:</strong> India's most used app has no inline reply through Phone Link. Fix: a deep API partnership with Meta.</li>
+        <li><strong>Setup friction:</strong> a Microsoft account, two app installs and Bluetooth/Wi-Fi permissions lose non-technical users. Fix: QR-code pairing and a no-account guest mode for file transfer.</li>
+        <li><strong>OEM fragmentation:</strong> full depth only on Samsung; OnePlus, OPPO and Xiaomi get less. Fix: bring Samsung-level features to the top five Indian Android brands.</li>
+      </ul>
+    </div>
+    <ol class="flow" aria-label="Recommended phases">
+      <li><b>Phase 1 · Fix setup</b><span>QR pairing, guest mode, less onboarding drop-off</span></li>
+      <li><b>Phase 2 · Deepen OEMs</b><span>App streaming beyond Samsung</span></li>
+      <li class="key"><b>Phase 3 · Win WhatsApp</b><span>Continuity for the messaging app that matters most in India</span></li>
+    </ol>
+  </section>
+
+  <section class="part">
+    <div class="read"><h2>Skills this shows</h2></div>
+    <ul class="skills">
+      <li>Problem framing</li>
+      <li>User segmentation</li>
+      <li>Feature prioritisation</li>
+      <li>Competitive analysis</li>
+      <li>Telemetry and success metrics</li>
+      <li>Risk and gap analysis</li>
+    </ul>
+  </section>
+
+  <nav class="next" aria-label="More work">
+    <a href="../ai-try-on/">← AI Try-On PRD</a>
+    <a href="../problem-framing/">Next: Problem framing →</a>
+  </nav>
+</main>
+
+<footer class="foot">
+  <span>Karthik Pandurangan · 2026</span>
+  <span><a href="../../assets/Karthik_Pandurangan_Resume.pdf">Resume</a> · <a href="http://www.linkedin.com/in/karthik-pandurangan-2b660627a">LinkedIn</a> · <a href="https://github.com/Karthik07p">GitHub</a></span>
+</footer>
+
+<script src="../../assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CUBE Trial-to-Paid · Karthik Pandurangan</title>
+<meta name="description" content="Case study: a 4-stage sign-up funnel across 84 portals and 74 CRM deals at CUBE, and a PRD with a clickable prototype to fix the trial-to-paid drop-off.">
+<script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+
+<header class="top">
+  <a class="me" href="../../"><i aria-hidden="true">kp</i>Karthik Pandurangan</a>
+  <nav aria-label="Main">
+    <a href="../../#work">Work</a>
+    <a href="../../assets/Karthik_Pandurangan_Resume.pdf">Resume</a>
+    <a href="http://www.linkedin.com/in/karthik-pandurangan-2b660627a">LinkedIn</a>
+    <a href="https://github.com/Karthik07p">GitHub</a>
+    <button class="theme-btn" type="button">Theme</button>
+  </nav>
+</header>
+
+<main class="wrap">
+
+  <section class="case-head">
+    <p class="label">Case study · CUBE · 2026</p>
+    <h1>Fixing the trial-to-paid drop-off</h1>
+    <p class="lede">CUBE's free trial brought in sign-ups, but almost none became customers, and nobody could say where they were lost. I joined every trial and paid portal to its CRM deal, found the leak, and wrote a PRD with a clickable prototype for the fix.</p>
+    <div class="ctas">
+      <a class="btn solid" href="https://drive.google.com/file/d/1Pzm4wbJR4EUgD-n2uAxSsVJC1ta52IX_/view">Read the full PRD (PDF, 14 pages)</a>
+      <a class="btn line" href="#prototype">Try the prototype</a>
+    </div>
+    <dl class="facts-strip">
+      <div><dt>Role</dt><dd>Product &amp; AI Automation Intern</dd></div>
+      <div><dt>Company</dt><dd>CUBE, construction SaaS (70k+ users)</dd></div>
+      <div><dt>Data</dt><dd>84 portals, 74 live CRM deals</dd></div>
+      <div><dt>Output</dt><dd>Funnel analysis, PRD, prototype</dd></div>
+    </dl>
+  </section>
+
+  <section class="stats" aria-label="Key findings">
+    <div class="stat"><b>94%</b><span>of real trial portals went live (32 of 34)</span></div>
+    <div class="stat bad"><b>6%</b><span>became paid (2 of 34), and sales closed both</span></div>
+    <div class="stat"><b>18 of 28</b><span>self-serve sign-ups never reached a salesperson</span></div>
+    <div class="stat"><b>42%</b><span>of trial sign-ups were tests or duplicates (22 of 53)</span></div>
+  </section>
+
+  <section class="part">
+    <div class="read">
+      <h2>Why I built this</h2>
+      <p>The sales team could see trial sign-ups coming in, but the portal list and the CRM had never been joined, so the trial funnel was invisible. Opinions about why trials failed were easy to find; numbers were not.</p>
+      <p>I wanted to answer one question with data: <strong>where exactly do trial users drop, and what would fix it?</strong> That meant mapping every portal to its deal and measuring each stage before writing a single requirement.</p>
+    </div>
+  </section>
+
+  <section class="part">
+    <div class="read">
+      <h2>What I found</h2>
+      <p>I tracked four stages: <strong>Requested</strong> (portal signed up), <strong>Active</strong> (provisioned and used), <strong>Paid</strong> (a paid portal exists) and <strong>Won</strong> (CRM deal closed). Trials clear the first step easily and then stop. Contract-first deals, where sales signs the customer before any portal exists, convert 50 of 50.</p>
+    </div>
+    <figure>
+      <div class="frame light"><img src="img/funnel.png" width="1344" height="650" alt="Funnel by stage. Trial portals: 34 requested, 32 active, 2 paid, 2 won. Contract-first portals: 50 at every stage."></div>
+      <figcaption>The loss sits between Active and Paid. Bars are scaled to each column's first stage; test portals and partners are excluded.</figcaption>
+    </figure>
+    <div class="read">
+      <ul>
+        <li><strong>Nobody follows up.</strong> Most self-serve sign-ups never became a CRM deal, so no owner ever saw them.</li>
+        <li><strong>No way to pay.</strong> There is no upgrade step inside the trial; the only conversions came through a sales deal.</li>
+        <li><strong>No real deadline.</strong> Older trials were extended in bulk, and 6 self-serve deals sat in the "Trial" stage for over a year.</li>
+        <li><strong>Noisy data.</strong> Internal tests and duplicates made up 42% of sign-ups, inflating every top-of-funnel number.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="part">
+    <div class="read">
+      <h2>Where the journey breaks today</h2>
+      <p>The sign-up screen is short and clean. The problem is everything after it: once the portal is created, there is no onboarding, no hand-off to sales, and no upgrade step. Across the site, six different button labels lead to this page, and none states the trial length.</p>
+    </div>
+    <figure>
+      <div class="frame light"><img src="img/signup-today.jpg" width="1600" height="1000" loading="lazy" alt="CUBE's current sign-up page: email field, Next button, and Google, Microsoft and Apple sign-in"></div>
+      <figcaption>CUBE's public sign-up page, viewed 27 October 2026 without creating an account.</figcaption>
+    </figure>
+  </section>
+
+  <section class="part">
+    <div class="read">
+      <h2>The fix in three moves</h2>
+      <p>Nine requirements (R1–R9), each tied to one leak in the data, grouped into three moves and ranked with RICE.</p>
+      <ol class="moves">
+        <li><div><strong>Route every sign-up to an owner.</strong> Create a CRM deal at sign-up, ask three qualifying questions, send large and government accounts straight to sales, and flag test portals.<span class="req">R1 R2 R8</span></div></li>
+        <li><div><strong>Get users to value in one session.</strong> An instant portal, a guided five-step first-project checklist, and nudges on days 3, 10 and 13.<span class="req">R3 R6 R7</span></div></li>
+        <li><div><strong>Let them pay inside the trial.</strong> An upgrade screen with seats and list prices, a hard 14-day end, and the CRM stage updated automatically.<span class="req">R4 R5 R9</span></div></li>
+      </ol>
+    </div>
+    <div class="gallery">
+      <figure><div class="frame light"><img src="img/s1-cta.jpg" width="1230" height="764" loading="lazy" alt="Pricing page with one Start 14-day free trial button and the trial terms beside it"></div><figcaption>One call to action, with the trial length stated up front.</figcaption></figure>
+      <figure><div class="frame light"><img src="img/s2-qualify.jpg" width="1230" height="764" loading="lazy" alt="Three qualifying questions: role, company size and project type"></div><figcaption>Three questions route the account to self-serve or sales (R2).</figcaption></figure>
+      <figure><div class="frame light"><img src="img/s4-setup.jpg" width="1230" height="932" loading="lazy" alt="Guided setup checklist with five steps"></div><figcaption>A guided first-project checklist on day 1 (R6).</figcaption></figure>
+      <figure><div class="frame light"><img src="img/s6-upgrade.jpg" width="1230" height="764" loading="lazy" alt="Upgrade screen with seat steppers and an annual total"></div><figcaption>Upgrade inside the trial at published list prices (R4).</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="part" id="prototype">
+    <div class="read">
+      <h2>Prototype</h2>
+      <p>Click through the proposed flow. Tick checklist steps, change seat counts, pay or request a quote, and watch the "Behind the scenes" panel fill with the CRM events each step creates. Sample data only.</p>
+      <p><a href="prototype.html">Open the prototype full screen →</a></p>
+    </div>
+    <div class="embed proto"><iframe id="proto" src="prototype.html" title="Clickable prototype of the proposed trial-to-paid flow" loading="lazy"></iframe></div>
+    <script>
+      // Size the prototype frame to its content (same origin), so there is no empty band or inner scrollbar.
+      (function () {
+        var f = document.getElementById('proto');
+        function fit() {
+          try { var d = f.contentDocument; if (d && d.body) f.style.height = d.documentElement.scrollHeight + 'px'; } catch (e) {}
+        }
+        f.addEventListener('load', function () {
+          fit();
+          try { new ResizeObserver(fit).observe(f.contentDocument.body); } catch (e) {}
+        });
+        addEventListener('resize', fit);
+      })();
+    </script>
+  </section>
+
+  <section class="part">
+    <div class="read">
+      <h2>What's in the PRD, and why</h2>
+      <p>The full document follows CUBE's own brand template. Each section is there to answer a question a reviewer would ask.</p>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Section</th><th>What it covers</th><th>Why it's there</th></tr></thead>
+        <tbody>
+          <tr><td>Goal &amp; vision</td><td>The trial as a second, product-led way into CUBE</td><td>Sales already wins every contract-first deal; the trial should feed sales, not compete with it</td></tr>
+          <tr><td>Background</td><td>The funnel chart and six measured signals</td><td>Every requirement traces back to a number here</td></tr>
+          <tr><td>North Star</td><td>Trial-to-paid within 30 days: 6% today, 15% target</td><td>Measured per portal, so more sign-ups can't game it</td></tr>
+          <tr><td>Personas</td><td>Small studio, developer, government body, channel partner</td><td>Each needs a different trial: a card checkout or a named rep</td></tr>
+          <tr><td>Requirements</td><td>R1–R9, each mapped to one leak, ranked with RICE</td><td>Keeps scope honest: no feature without evidence</td></tr>
+          <tr><td>User journey</td><td>Nine steps from first click to trial end, plus failure states</td><td>Shows the CRM hand-off at each step, the part missing today</td></tr>
+          <tr><td>Technical</td><td>Sign-up service, CRM API integration, billing, analytics events</td><td>A concrete starting point for engineering, and the events to measure success</td></tr>
+          <tr><td>Release &amp; metrics</td><td>Three gated phases, L1/L2 metrics with baselines, an A/B test</td><td>States plainly that ~7 trials a quarter is too few for a fast significant test</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="embed pdf"><iframe src="https://drive.google.com/file/d/1Pzm4wbJR4EUgD-n2uAxSsVJC1ta52IX_/preview" title="Full PRD, 14 pages" loading="lazy" allow="autoplay"></iframe></div>
+  </section>
+
+  <section class="part">
+    <div class="read">
+      <h2>How I did it</h2>
+      <ul>
+        <li><strong>Data:</strong> 53 trial portals from the admin export and 63 CRM deals mapped to portals, joined to 74 live deals pulled through the Freshsales API (read-only). After removing tests and duplicates: 84 customer portals.</li>
+        <li><strong>Checks:</strong> stage counts reconcile with the inputs, and five deals were spot-checked by hand in the CRM.</li>
+        <li><strong>Current flow:</strong> walked CUBE's public pricing and sign-up pages without creating an account.</li>
+        <li><strong>Tools:</strong> Python (pandas), Freshsales REST API, Playwright for screenshots, HTML and JavaScript for the prototype.</li>
+        <li><strong>Confidentiality:</strong> client and staff names are left out of everything public.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="part">
+    <div class="read"><h2>Skills this shows</h2></div>
+    <ul class="skills">
+      <li>Funnel analysis on messy B2B data</li>
+      <li>Problem framing from evidence</li>
+      <li>PRD writing with RICE prioritisation</li>
+      <li>North Star and L1/L2 metrics</li>
+      <li>Prototyping a full journey</li>
+      <li>Experiment design with small samples</li>
+    </ul>
+  </section>
+
+  <nav class="next" aria-label="More work">
+    <a href="../../#work">← All work</a>
+    <a href="../swasthyasaathi/">Next: SwasthyaSaathi, vernacular AI triage →</a>
+  </nav>
+</main>
+
+<footer class="foot">
+  <span>Karthik Pandurangan · 2026</span>
+  <span><a href="../../assets/Karthik_Pandurangan_Resume.pdf">Resume</a> · <a href="http://www.linkedin.com/in/karthik-pandurangan-2b660627a">LinkedIn</a> · <a href="https://github.com/Karthik07p">GitHub</a></span>
+</footer>
+
+<script src="../../assets/site.js"></script>
+</body>
+</html>

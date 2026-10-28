@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AI Try-On PRD · Karthik Pandurangan</title>
+<meta name="description" content="PRD: AI Try-On for an online jewellery app, from personas and pain points to failure states, privacy and a phased release.">
+<script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+
+<header class="top">
+  <a class="me" href="../../"><i aria-hidden="true">kp</i>Karthik Pandurangan</a>
+  <nav aria-label="Main">
+    <a href="../../#work">Work</a>
+    <a href="../../assets/Karthik_Pandurangan_Resume.pdf">Resume</a>
+    <a href="http://www.linkedin.com/in/karthik-pandurangan-2b660627a">LinkedIn</a>
+    <a href="https://github.com/Karthik07p">GitHub</a>
+    <button class="theme-btn" type="button">Theme</button>
+  </nav>
+</header>
+
+<main class="wrap">
+
+  <section class="case-head">
+    <p class="label">PRD · Computer vision · E-commerce</p>
+    <h1>AI Try-On for an online jewellery app</h1>
+    <p class="lede">Let shoppers see a piece on their own face and neck before they buy, so a ₹50,000 decision rests on how it looks on them, not on a catalogue photo of a model.</p>
+    <div class="ctas">
+      <a class="btn solid" href="AI_TryOn_PRD.pdf">Read the full PRD (PDF, 12 pages)</a>
+      <a class="btn line" href="#mockups">See the mockups</a>
+    </div>
+    <dl class="facts-strip">
+      <div><dt>Type</dt><dd>Product requirements document</dd></div>
+      <div><dt>For</dt><dd>Design and engineering teams</dd></div>
+      <div><dt>North Star</dt><dd>25% of product-page sessions use Try-On</dd></div>
+      <div><dt>MVP</dt><dd>Necklaces, top 50 SKUs</dd></div>
+    </dl>
+  </section>
+
+  <section class="part">
+    <div class="read">
+      <h2>Goal and vision</h2>
+      <p>Make AI Try-On the default way people judge fine jewellery online: the visual-confidence layer between browsing and buying.</p>
+      <ul>
+        <li><strong>Visual confidence:</strong> close the gap between a catalogue photo and how the piece looks on you.</li>
+        <li><strong>Fewer returns:</strong> less need for in-store trial before a first high-value purchase.</li>
+        <li><strong>Habit:</strong> the app people reopen before every occasion purchase.</li>
+        <li><strong>Differentiation:</strong> marketplaces only show static model photography.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="part">
+    <div class="read">
+      <h2>Background</h2>
+      <p>The two founding pain points are mistrust of catalogue images and not knowing whether a piece suits an outfit. Better photography fixes neither: it can't show how a necklace sits on your neck, skin tone or outfit.</p>
+      <p><em>Directional benchmarks, from AR try-on in eyewear and beauty, adjusted for jewellery's higher price and lower purchase frequency:</em></p>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Signal</th><th>Value</th><th>Why it matters</th></tr></thead>
+        <tbody>
+          <tr><td>Returns on jewellery bought unseen</td><td>18–22%</td><td>Many returns cite "did not look as expected", not a defect</td></tr>
+          <tr><td>Product page to cart, today</td><td>~2.1%</td><td>The baseline Try-On should move</td></tr>
+          <tr><td>Pre-sales chats asking "how will this look on me"</td><td>~9%</td><td>Users already ask by hand; this productises the behaviour</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="read">
+      <p><strong>Why now:</strong> face and neck landmark tracking is now reliable on mid-range phones, not just flagships, so real-time overlay works without rebuilding the native app.</p>
+    </div>
+  </section>
+
+  <section class="part">
+    <div class="read">
+      <h2>North Star</h2>
+      <p><strong>% of product-page sessions that use Try-On before Add to Cart</strong>: 0% today, 25% within six months of full launch.</p>
+      <p>Adoption is a leading indicator that moves fast and attributes cleanly. Revenue and returns are tracked too, but they take two or three purchase cycles to show signal and get muddied by pricing, seasonality and marketing spend.</p>
+    </div>
+  </section>
+
+  <section class="part">
+    <div class="read"><h2>Personas</h2></div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Persona</th><th>Goal</th><th>Pain points, prioritised</th></tr></thead>
+        <tbody>
+          <tr><td>The Occasion Shopper</td><td>Certainty before spending ₹50K+ on one piece for a wedding or festival</td><td>1. Doesn't trust catalogue lighting or model skin tone<br>2. Can't tell if it suits her outfit until it arrives<br>3. Returning a high-value item feels uncomfortable</td></tr>
+          <tr><td>The Everyday Gold Buyer</td><td>A quick "does this suit me" check on smaller, frequent buys</td><td>1. Won't spend more than 30–45 seconds on a sub-₹20K piece<br>2. Abandons a slow or fiddly flow</td></tr>
+          <tr><td>The Gifter</td><td>Confidence the piece suits someone who isn't there</td><td>1. Can't try it on the recipient<br>2. Guesses skin tone and face shape from memory</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="read"><p>The Gifter is not solved directly in v1 because of consent rules for someone else's face; it's flagged as an open question for Design and Legal.</p></div>
+  </section>
+
+  <section class="part">
+    <div class="read"><h2>Pain points → features</h2></div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Pain point</th><th>Feature</th></tr></thead>
+        <tbody>
+          <tr><td>Catalogue images look different from reality</td><td>Live camera Try-On with corrected lighting; side-by-side Comparison View</td></tr>
+          <tr><td>Unsure whether it matches the outfit</td><td>Photo-upload Try-On against a photo in the actual outfit; Saved Looks</td></tr>
+          <tr><td>High-value returns: "didn't look as expected"</td><td>Match confidence on the result; a "Tried On" badge carried into the cart</td></tr>
+          <tr><td>Slow evaluation on smaller purchases</td><td>Under-5-second processing target; one-tap Retry</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="part" id="mockups">
+    <div class="read">
+      <h2>User journey and mockups</h2>
+      <p>The happy path, with both entry points (camera and upload) and failure states designed in from day one rather than bolted on.</p>
+    </div>
+    <div class="phones">
+      <figure><div class="frame light"><img src="img/m01-listing.jpg" width="500" height="1163" loading="lazy" alt="Necklace listing page"></div><figcaption>1 · Listing</figcaption></figure>
+      <figure><div class="frame light"><img src="img/m02-pdp.jpg" width="500" height="1163" loading="lazy" alt="Product page with a Try It On button under the price"></div><figcaption>2 · Product page: "Try It On" under the price</figcaption></figure>
+      <figure><div class="frame light"><img src="img/m03-camera.jpg" width="500" height="1163" loading="lazy" alt="Camera screen with a face and neck alignment guide"></div><figcaption>3 · Camera with an alignment guide</figcaption></figure>
+      <figure><div class="frame light"><img src="img/m04-processing.jpg" width="500" height="1163" loading="lazy" alt="Processing screen saying it usually takes 3 to 5 seconds"></div><figcaption>4 · Processing: "usually 3–5 seconds"</figcaption></figure>
+      <figure><div class="frame light"><img src="img/m05-result.jpg" width="500" height="1163" loading="lazy" alt="Result screen with the necklace on the user and a 92% match"></div><figcaption>5 · Result with match confidence</figcaption></figure>
+      <figure><div class="frame light"><img src="img/m06-compare.jpg" width="500" height="1163" loading="lazy" alt="Before and after comparison"></div><figcaption>6 · Compare before and after</figcaption></figure>
+      <figure><div class="frame light"><img src="img/m07-saved.jpg" width="500" height="1163" loading="lazy" alt="Saved looks kept for 30 days"></div><figcaption>7 · Saved Looks, kept 30 days</figcaption></figure>
+      <figure><div class="frame light"><img src="img/m08-cart.jpg" width="500" height="1163" loading="lazy" alt="Cart showing a Try-On match tag on the necklace"></div><figcaption>8 · Cart keeps the "Tried On" tag</figcaption></figure>
+    </div>
+    <div class="read">
+      <h3>Failure states</h3>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Failure</th><th>Handling</th></tr></thead>
+        <tbody>
+          <tr><td>No face detected</td><td>Inline guidance and retry; doesn't count against rate limits</td></tr>
+          <tr><td>Poor lighting</td><td>Warn before capture; specific error after</td></tr>
+          <tr><td>Processing over 10 s</td><td>Auto-cancel, offer Retry, log to the AI accuracy dashboard</td></tr>
+          <tr><td>No 3D asset for the SKU</td><td>Hide the Try-On button on that product</td></tr>
+          <tr><td>Unsupported device</td><td>Hide the entry point on the client</td></tr>
+          <tr><td>Network drop</td><td>Retry locally with the cached frame for up to 30 s</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="part">
+    <div class="read">
+      <h2>Technical requirements, in short</h2>
+      <ul>
+        <li><strong>Frontend:</strong> camera access on web and native, a client-side alignment guide with no server round-trip, and a device capability check on page load.</li>
+        <li><strong>Backend:</strong> a Try-On service to create a session, accept a frame, return the overlay with confidence, and save on request; async processing with a 3–5 s target; 30 attempts per hour per user.</li>
+        <li><strong>Computer vision:</strong> 68+ point face and neck landmarks, lighting normalisation on the jewellery (not the user's photo), and realistic metal and diamond rendering.</li>
+        <li><strong>The real bottleneck:</strong> producing a 3D asset per SKU. Merchandising has to scale and QA that pipeline from week one.</li>
+        <li><strong>Privacy (DPDP Act):</strong> explicit consent for facial data, frames processed in memory and discarded, Saved Looks opt-in only, encrypted and deletable.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="part">
+    <div class="read"><h2>Release plan</h2></div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Feature</th><th>Priority</th><th>Phase</th><th>Rationale</th></tr></thead>
+        <tbody>
+          <tr><td>Camera Try-On, necklaces, top 50 SKUs</td><td>P0</td><td>1 · MVP</td><td>Necklaces have the simplest geometry; 50 SKUs tests the asset pipeline without missing assets everywhere</td></tr>
+          <tr><td>Photo-upload Try-On</td><td>P0</td><td>1 · MVP</td><td>Solves outfit matching at low extra cost</td></tr>
+          <tr><td>Result screen + Add to Cart</td><td>P0</td><td>1 · MVP</td><td>Closes the loop to a business outcome</td></tr>
+          <tr><td>Full necklace catalogue</td><td>P1</td><td>2</td><td>Gated on asset throughput, not engineering</td></tr>
+          <tr><td>Comparison View, Saved Looks</td><td>P1</td><td>2</td><td>Need saved state and the consent flow first</td></tr>
+          <tr><td>Rings</td><td>P1</td><td>2</td><td>Hand-pose tracking is a different model</td></tr>
+          <tr><td>Earrings, share to social</td><td>P2</td><td>3</td><td>Hair and ear occlusion make earrings hardest</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="part">
+    <div class="read">
+      <h2>Metrics, launch and open questions</h2>
+      <ul>
+        <li><strong>Metrics:</strong> activation (product-page viewers who tap Try It On), engagement (try-ons per session, retry and completion), conversion (cart rate from the result vs the product page), business (order count and value on Try-On orders), trust (returns on Try-On orders, 6–8 week lag) and AI accuracy (success rate, latency, "didn't look right" reports).</li>
+        <li><strong>Launch:</strong> a named feature on product pages and the home page, aimed first at shoppers who viewed 3+ necklaces in 30 days without buying; 10% of eligible traffic for a week, then 100%.</li>
+        <li><strong>Open questions:</strong> exact DPDP consent wording (Legal), device cut-offs (Engineering), per-SKU asset turnaround (Design and Category), and whether to support trying a piece on someone else's photo (Product and Legal).</li>
+        <li><strong>Future scope:</strong> matching sets, "complete the look" suggestions, an in-store kiosk, and video try-on to show how metal catches light.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="part">
+    <div class="read"><h2>Skills this shows</h2></div>
+    <ul class="skills">
+      <li>PRD writing</li>
+      <li>Persona and pain-point mapping</li>
+      <li>North Star selection</li>
+      <li>Failure-state design</li>
+      <li>Privacy and compliance trade-offs</li>
+      <li>MVP scoping around a bottleneck</li>
+    </ul>
+  </section>
+
+  <nav class="next" aria-label="More work">
+    <a href="../swasthyasaathi/">← SwasthyaSaathi</a>
+    <a href="../link-to-windows/">Next: Link to Windows teardown →</a>
+  </nav>
+</main>
+
+<footer class="foot">
+  <span>Karthik Pandurangan · 2026</span>
+  <span><a href="../../assets/Karthik_Pandurangan_Resume.pdf">Resume</a> · <a href="http://www.linkedin.com/in/karthik-pandurangan-2b660627a">LinkedIn</a> · <a href="https://github.com/Karthik07p">GitHub</a></span>
+</footer>
+
+<script src="../../assets/site.js"></script>
+</body>
+</html>
